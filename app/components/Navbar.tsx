@@ -2,7 +2,7 @@ import Navtab from "./Navtab";
 const nav = [
     'Home',
     'About',
-    'Projects',
+    'Blog',
     'Photography',
     'Contact'
 ];
