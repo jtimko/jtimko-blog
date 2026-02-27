@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JTimko Blog
+
+A personal blog built with Next.js 16, MDX, and Tailwind CSS. Write posts locally and deploy to your server.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Writing Blog Posts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Blog posts
 
-## Learn More
+Create `.mdx` files in `content/posts/`:
 
-To learn more about Next.js, take a look at the following resources:
+```mdx
+---
+title: Your post title
+date: 2026-02-26
+cover: /images/your-cover.jpg  # optional, path relative to public/
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Your content in **Markdown** or MDX.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Photography posts
 
-## Deploy on Vercel
+Create `.mdx` files in `content/photography/` with the same frontmatter format.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontmatter
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Field  | Required | Description                          |
+|--------|----------|--------------------------------------|
+| `title`| Yes      | Post title                           |
+| `date` | No       | Publication date (YYYY-MM-DD)         |
+| `cover`| No       | Cover image path (e.g. `/photos/cover.jpg`) |
+
+Cover images go in `public/`. For example, `cover: /photos/redwoods/cover.jpg` expects `public/photos/redwoods/cover.jpg`.
+
+## Deploying
+
+1. Add or edit MDX files in `content/posts/` and `content/photography/`.
+2. Build: `npm run build`
+3. Deploy the output to your server (e.g. Vercel, your own VPS).
+4. Run `npm run start` on the server, or use a static export if preferred.
+
+Posts are sorted by date (newest first). New files are picked up on the next build.
+
+## Project Structure
+
+```
+content/
+  posts/        # Blog posts (.mdx)
+  photography/  # Photography posts (.mdx)
+app/
+  blog/         # Blog listing and [slug] pages
+  photography/  # Photography listing and [slug] pages
+  about/        # About page
+  contact/      # Contact page
+lib/
+  posts.ts      # MDX loading and metadata
+```

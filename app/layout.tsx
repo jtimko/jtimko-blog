@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
-import { Arimo } from 'next/font/google'
+import { Arimo } from "next/font/google";
 import "./globals.css";
 
-
-const arimo = Arimo ({
-    subsets: ['latin'],
-    display: 'swap',
-})
+const arimo = Arimo({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "JTimko - My corner of the internet",
@@ -21,10 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={arimo.className}>
-      <body
-        className={`bg-[#F2EDE4] h-screen antialiased`}
-      >
-        <div className="h-screen w-2/3 m-auto">
+      <body className="bg-[#F2EDE4] min-h-screen antialiased">
+        <div className="min-h-screen w-full max-w-3xl mx-auto px-4 sm:px-6">
           <Navbar />
           {children}
         </div>
